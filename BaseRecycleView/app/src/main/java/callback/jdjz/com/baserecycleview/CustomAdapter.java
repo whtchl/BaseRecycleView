@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -36,9 +37,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private final TextView textView;
+        private Button btn;
+
+        /*
+        *1.这里item中不同的控件设置点击事件。
+        *2.如何对这里的点击事件进行封装详细请看https://github.com/whtchl/Liaomei.git
+        * LiaomeiListAdapter.java
+        * 接口 private OnLiaomeiTouchListener mOnLiaomeiTouchListener;
+        */
+
         public ViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(new View.OnClickListener(){
+            itemView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
@@ -46,6 +56,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 }
             });
             textView = (TextView) itemView.findViewById(R.id.textView);
+            btn = (Button) itemView.findViewById(R.id.btn1);
+            btn.setOnClickListener(new View.OnClickListener() {
+                                               @Override
+                                               public void onClick(View view) {
+                                                   Log.d("TAG", "this is button");
+                                               }
+                                           });
         }
 
         public TextView getTextView() {
